@@ -1,0 +1,31 @@
+name : Actions Workflow
+
+on: [push, pull_request]
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: pwd
+        run: |
+          pwd
+          ls -l 
+          echo GITHUB_SHA: $GITHUB_SHA
+          echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+          echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
+          echo github.token: "${{ github.token }}"
+        #echo git clone git@github:$GITHUB_REPOSITORY
+          #git clone git@github:$GITHUB_REPOSITORY
+          #echo git checkout $GITHUB_SHA
+          #git checkout $GITHUB_SHA
+          #ls -l 
+      #- name: Simple JS Action
+      #  id: greet
+      #  uses: actions/hello-world-javascript-action@v1
+      #  with: 
+      #    who-to-greet: JOHN RAMBO
+      #- name: Log Greeting time
+      #  run: echo "${{ steps.greet.outputs.time }}"    
