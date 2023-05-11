@@ -1,0 +1,32 @@
+name: Shell Commands
+
+on: [push]
+
+jobs:
+    run-shell-command:
+      runs-on: ubuntu-latest
+      steps:
+        - name: echo a string
+          run: echo "Hello world"
+        - name: multiline script
+          run: |
+            node -v
+            npm -v
+        - name: python Commands
+          run: | 
+            import platform
+            import os 
+            print(platform.machine())
+            print(os.getcwd())
+          shell: python     
+
+    run-windows-commands:
+      runs-on: windows-latest
+      # add dependency
+      needs: ["run-shell-command"]
+      steps:
+        - name: pwd ps1
+          run: pwd
+        - name: pwd bash
+          run: pwd
+          shell : bash  
