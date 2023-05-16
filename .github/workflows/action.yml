@@ -12,11 +12,12 @@ jobs:
       - name: pwd
         run: |
           pwd
-          ls -l 
+          ls -la
           echo GITHUB_SHA: $GITHUB_SHA
           echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
           echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
           echo github.token: "${{ github.token }}"
+
         #echo git clone git@github:$GITHUB_REPOSITORY
           #git clone git@github:$GITHUB_REPOSITORY
           #echo git checkout $GITHUB_SHA
