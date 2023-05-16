@@ -5,7 +5,7 @@ name : Actions Workflow
 on:
   push:
     branches:
-      - 'dev'
+      - 'main'
       - 'releases/**'
   pull_request:
      types: [closed, assigned, opened, reopened]
