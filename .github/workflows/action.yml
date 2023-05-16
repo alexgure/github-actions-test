@@ -19,6 +19,7 @@ jobs:
           pwd
           ls -la
           echo GITHUB_SHA: $GITHUB_SHA
+          echo GITHUB_REF: $GITHUB_REF
           echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
           echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
           echo github.token: "${{ github.token }}"
