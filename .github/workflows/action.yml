@@ -3,6 +3,11 @@ name : Actions Workflow
 #on: [pull_request]
 
 on:
+  # this is manuall trigger you action 
+  # https://api.github.com/repos/
+  # https://api.github.com/alexgure/github-actions-test/dispatches
+  repository_dispatch:
+    type: [build]
   #push:
   #  branches:
   #    - 'dev'
