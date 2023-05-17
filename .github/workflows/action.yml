@@ -3,15 +3,28 @@ name : Actions Workflow
 #on: [pull_request]
 
 on:
-  # this is manuall trigger you action 
+  # this is manuall trigger you action , 
+  # cource https://starsgroup.udemy.com/course/github-actions/learn/lecture/17389694#overview, part 11 
   # https://api.github.com/repos/
   # https://api.github.com/alexgure/github-actions-test/dispatches
-  repository_dispatch:
-    type: [build]
+  # repository_dispatch:
+  #   type: [build]
   #push:
   #  branches:
   #    - 'dev'
   #    - 'releases/**'
+  #    - '!feature/featC'    # it will exclude this branch
+  #    - 'feature/feat[ABS]'
+  #  tags:
+  #    - v1.*
+  # paths:
+  #    - 'null'
+  #    - '**.js'
+  #    - '!filename.js'
+  # paths-ignore:
+  #   - 'docs/**'
+
+
   #schedule:
   #  - cron: "0/1 0 * * *" 
   #  - cron: "0/5 0 * * *" 
