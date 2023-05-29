@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context NO JSON
-        id: github_context_step
+        id: github_context_step_0
         run: echo '${{ github }}'
       
       - name: Dump GitHub context
