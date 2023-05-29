@@ -1,5 +1,5 @@
 name: Context testing
-on: push
+on: [push, pull_request ]
 
 jobs:
   dump_contexts_to_log:
@@ -11,16 +11,15 @@ jobs:
           echo ${{ startsWith('hello', 'he')  }}
           echo ${{ endsWith('hello', 'lo')  }}
           echo ${{ format('Hello {0} {1} {2}', '$GITHUB_ACTOR','!','!') }}
-
-
-
-
-
-
+  
+  one:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
       
-      #- name: Dump GitHub context
-      #  id: github_context_step
-      #  run: echo '${{ toJSON(github) }}'
       #
       #- name: Dump job context
       #  run: echo '${{ toJSON(job) }}'
