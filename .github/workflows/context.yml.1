@@ -14,6 +14,10 @@ jobs:
   
   one:
     runs-on: ubuntu-latest
+    # the maximum number of min to let a workflow run defore 
+    # Github automatically cancels it. Default:360
+    timeout-minutes: 360
+
     if: github.event_name == 'push'
     steps:
       - name: Dump GitHub context
@@ -32,7 +36,11 @@ jobs:
         env:
           STEPS_CONTEXT: ${{ toJSON(steps) }}
         run: echo $STEPS_CONTEXT    
-
+        continue-on-error: true
+      - name: Another step
+        run: |
+          echo "Hello world"
+          
 
 
       
