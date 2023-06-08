@@ -4,9 +4,8 @@ on:
   pull_request:
     types:
       - closed
-    paths-ignore:
-      - '.github/**'
     
+      
 jobs:
   job_1:
     runs-on: ubuntu-latest
