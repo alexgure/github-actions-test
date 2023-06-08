@@ -10,16 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Set var
-        run: echo "::set-output name=myVar::alex"
-        #run: echo "{name}={alex}" >> $GITHUB_STATE
-
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - run: mkdir -p path/to/artifact
+      
+      - run: echo hello > path/to/artifact/world.txt
+      
+      - uses: actions/upload-artifact@v2
         with: 
           name: my-artifact
-          path: ${{ runner.workspace }}  
+          path: path/to/artifact/world.txt 
+      
+
+
+      #- name: Upload artifact
+      #  uses: actions/upload-artifact@v2
+      #  with: 
+      #    name: my-artifact
+      #    path: ${{ runner.workspace }}  
         
 
             
