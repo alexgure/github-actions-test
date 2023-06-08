@@ -1,0 +1,26 @@
+name: ENV variables
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  WF_ENV: ${{ secrets.GITHUB_TOKEN }}
+
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log ENV Variables
+        env:
+          STEP_ENV: Step var
+        run: |
+          ls -l
+          
+                 
+            
+        
+
+            
