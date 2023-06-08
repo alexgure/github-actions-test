@@ -1,0 +1,22 @@
+name: ENV variables
+
+on:
+  pull_request:
+    types:
+      - closed
+    paths-ignore:
+      - '.github/**'
+    
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    # local env
+    steps:
+      - name: Log ENV Variables
+        run: |
+          ls -l 
+                 
+            
+        
+
+            
