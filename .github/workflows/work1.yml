@@ -5,22 +5,21 @@ on:
     branches:
       - main
 
-env:
-  WF_ENV: ${{ secrets.GITHUB_TOKEN }}
-
-
 jobs:
-  job_1:
+  build:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Log ENV Variables
-        env:
-          STEP_ENV: Step var
-        run: |
-          ls -l
-          
-                 
-            
+      - name: Set var
+        run: echo "::set-output name=myVar::alex"
+        #run: echo "{name}={alex}" >> $GITHUB_STATE
+
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with: 
+          name: my-artifact
+          path: ${{ runner.workspace }}  
         
 
             

@@ -7,15 +7,19 @@ on:
     
       
 jobs:
-  job_1:
+  build:
     runs-on: ubuntu-latest
-    # local env
+    
     steps:
-      - name: Log ENV Variables
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with: 
+          name: my-artifact
+          
+      - name: Extract artifact
         run: |
-          ls -l 
-                 
-            
+          tar -xf my-artifact
+          cat extracted-workflow-output.txt    
         
 
             
