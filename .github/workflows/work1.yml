@@ -11,8 +11,8 @@ jobs:
     
     steps:
       - name: Set var
-        #run: echo "::set-output name=myVar::alex"
-        run: echo "{name}={alex}" >> $GITHUB_STATE
+        run: echo "::set-output name=myVar::alex"
+        #run: echo "{name}={alex}" >> $GITHUB_STATE
 
 
       - name: Upload artifact
