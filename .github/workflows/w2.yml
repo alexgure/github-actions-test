@@ -11,7 +11,8 @@ jobs:
 
     steps:
       - name: Run Intermediate Workflow
-        uses: ./.github/workflows/intermediate-workflow
+        uses: ./.github/workflows/First Workflow
+        #uses: ./.github/workflows/intermediate-workflow
 
       - name: Use Intermediate Output
         run: echo "The intermediate variable is ${{ steps.setOutput.outputs.intermediateVariable }}"
