@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Set variable
         run: | 
-          echo ${{ github.event.pull_request }}
+          echo "pull_request : ${{ github.event.pull_request }}"
           echo "{myVariable}={111}" >> $GITHUB_OUTPUT
           echo "{myVariable}={111}" > 1.txt
           
