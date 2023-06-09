@@ -1,7 +1,7 @@
 name: First Workflow
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -11,10 +11,22 @@ jobs:
 
     steps:
       - name: Set variable
-        run: echo "::set-output name=myVariable::111"
+        run: | 
+          echo "{myVariable}={111}" >> $GITHUB_OUTPUT
+          echo "{myVariable}={111}" > 1.txt
+          echo "INTERMEDIATE_VARIABLE=999" >> $GITHUB_ENV
+          ls -lart
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ${{ runner.workspace }}
+          path: 1.txt
+              
+      - name: Set output
+        id: setOutput
+        run: |
+            #echo "::set-output name=intermediateVariable::${{ env.INTERMEDIATE_VARIABLE }}"    
+            echo "intermediateVariable=${{ env.INTERMEDIATE_VARIABLE }}" >> $GITHUB_OUTPUT
+            echo "aws_accounts=[$(echo ${account_plan_list[@]} | tr ' ', ',' )]" >> "$GITHUB_OUTPUT"
+            env|grep GIT
