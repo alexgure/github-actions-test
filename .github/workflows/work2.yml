@@ -18,6 +18,8 @@ jobs:
           
       - name: Extract artifact
         run: ls -R
+
+      - run: cat "$GITHUB_OUTPUT"  
             
         
 
