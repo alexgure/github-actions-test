@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout AFT Account Customizations (local) repository
+      - name: Checkout local repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Get lisf ot changed files in Account Customizations
+      - name: Get lisf ot changed files
         id: changed_files
         uses: tj-actions/changed-files@v34
         with:
           files_ignore: .github
 
-      - name: Generate AWS account plan list
+      - name: Generate list of modified files
         id: aws_account_plan_list
         continue-on-error: true
         run: |
@@ -54,18 +54,18 @@ jobs:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout AFT Account Customizations (local) repository
+      - name: Checkout local repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Get lisf ot changed files in Account Customizations
+      - name: Get lisf ot changed files
         id: changed_files
         uses: tj-actions/changed-files@v34
         with:
           files_ignore: .github
 
-      - name: Generate AWS account plan list
+      - name: Generate list of modified files
         id: aws_account_plan_list
         continue-on-error: true
         run: |
