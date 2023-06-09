@@ -8,19 +8,21 @@ on:
       
 jobs:
   get-artifacts:
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
     
     steps:
+
       - name: Download artifact
         uses: actions/download-artifact@v3
         with: 
-          name: art1
+          name: world
           
       - name: Extract artifact
         run: ls -R
 
       - run: env
             
-        
+      
 
             
