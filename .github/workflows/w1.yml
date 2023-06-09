@@ -28,7 +28,8 @@ jobs:
   job_2:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
-
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       #- name: Download artifact
       #  uses: actions/download-artifact@v3
