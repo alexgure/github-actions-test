@@ -1,0 +1,20 @@
+name: First Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set variable
+        run: echo "::set-output name=myVariable::111"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ${{ runner.workspace }}

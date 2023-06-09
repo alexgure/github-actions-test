@@ -1,0 +1,27 @@
+name: Intermediate Workflow
+
+on:
+  workflow_run:
+    workflows: ["First Workflow"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+
+      - name: Extract variable
+        run: |
+          cat my-artifact/extracted-workflow-output.txt >> $GITHUB_ENV
+          echo "INTERMEDIATE_VARIABLE=$(cat my-artifact/extracted-workflow-output.txt)" >> $GITHUB_ENV
+
+      - name: Set output
+        id: setOutput
+        run: |
+          echo "::set-output name=intermediateVariable::${{ env.INTERMEDIATE_VARIABLE }}"
