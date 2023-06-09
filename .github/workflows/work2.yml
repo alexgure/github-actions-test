@@ -19,7 +19,7 @@ jobs:
       - name: Extract artifact
         run: ls -R
 
-      - run: env|grep GIT 
+      - run: env
             
         
 
