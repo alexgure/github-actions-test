@@ -1,0 +1,17 @@
+name: Second Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Intermediate Workflow
+        uses: ./.github/workflows/intermediate-workflow
+
+      - name: Use Intermediate Output
+        run: echo "The intermediate variable is ${{ steps.setOutput.outputs.intermediateVariable }}"
