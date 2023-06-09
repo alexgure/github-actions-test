@@ -11,11 +11,15 @@ jobs:
 
     steps:
       - name: Set variable
-        run: echo "{myVariable}={111}" >> $GITHUB_OUTPUT
+        run: | 
+          echo "{myVariable}={111}" >> $GITHUB_OUTPUT
+          echo "{myVariable}={111}" > 1.txt
+          ls -lart
 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ${{ runner.workspace }}
+          path: 1.txt
+              
