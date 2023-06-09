@@ -32,12 +32,9 @@ jobs:
             declare -a account_plan_list
             customizations_list=($(for x in ${{ steps.changed_files.outputs.all_changed_files }}; do echo ${x} | cut -d'/' -f1 ; done | sort -u))
             
-            echo "Found changes in customizations: ${customizations_list[@]}"
-            
-            echo "Accounts using changed customizations:"
-            for x in ${account_plan_list[@]}; do echo ${x}; done
-            echo "aws_accounts=[$(echo ${account_plan_list[@]} | tr ' ', ',' )]" >> "$GITHUB_OUTPUT"
-            
+            echo "Found changes in : "
+            for x in ${customizations_list[@]}; do echo ${x}; done
+                        
                   
       
       - name: Set variable
