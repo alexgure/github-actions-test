@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+
+      - run : echo "${{  github.event.inputs.release }}"
+
       - name: Download artifact
         uses: actions/download-artifact@v3
         with: 
