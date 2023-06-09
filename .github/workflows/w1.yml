@@ -29,4 +29,4 @@ jobs:
             #echo "::set-output name=intermediateVariable::${{ env.INTERMEDIATE_VARIABLE }}"    
             echo "intermediateVariable=${{ env.INTERMEDIATE_VARIABLE }}" >> $GITHUB_OUTPUT
             echo "aws_accounts=[$(echo ${account_plan_list[@]} | tr ' ', ',' )]" >> "$GITHUB_OUTPUT"
-            env
+            env|grep GIT
