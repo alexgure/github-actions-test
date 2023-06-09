@@ -11,11 +11,11 @@ jobs:
     
     steps:
       #- run: mkdir -p path/to/artifact
-      - run : echo "${{ github.event.release.name }}""
 
       - run: echo hi > world.txt
       - uses: actions/upload-artifact@v3
         with:
+          name: world
           path: world.txt
       
 

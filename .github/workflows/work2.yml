@@ -17,7 +17,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with: 
-          name: art1
+          name: world
           
       - name: Extract artifact
         run: ls -R
