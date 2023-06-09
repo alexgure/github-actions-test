@@ -17,14 +17,6 @@ jobs:
         with:
           name: world
           path: world.txt
-      
-
-
-      #- name: Upload artifact
-      #  uses: actions/upload-artifact@v2
-      #  with: 
-      #    name: my-artifact
-      #    path: ${{ runner.workspace }}  
         
 
             

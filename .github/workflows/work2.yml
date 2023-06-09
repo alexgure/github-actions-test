@@ -22,9 +22,11 @@ jobs:
           name: world
 
       - name: Extract artifact
-        run: ls -R
+        run: |
+          ls -R
+          cat world.txt
 
-      - run: env
+      
             
       
 
