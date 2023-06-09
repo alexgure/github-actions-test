@@ -13,7 +13,7 @@ jobs:
       #- run: mkdir -p path/to/artifact
       
       - run: echo hello > world.txt
-      - run: ${{ runner.workspace }}  
+      #- run: ${{ runner.workspace }}  
       
       
       - uses: actions/upload-artifact@v3
