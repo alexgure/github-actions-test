@@ -4,29 +4,34 @@ on:
   pull_request:
     branches:
       - main
+    types: [opened, closed]
 
 jobs:
-  build:
+  job_1:
+    if: ${{ github.event.pull_request }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Set variable
         run: | 
+          echo ${{ github.event.pull_request }}
           echo "{myVariable}={111}" >> $GITHUB_OUTPUT
           echo "{myVariable}={111}" > 1.txt
-          echo "INTERMEDIATE_VARIABLE=999" >> $GITHUB_ENV
-          ls -lart
-
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: 1.txt
               
-      - name: Set output
-        id: setOutput
-        run: |
-            #echo "::set-output name=intermediateVariable::${{ env.INTERMEDIATE_VARIABLE }}"    
-            echo "intermediateVariable=${{ env.INTERMEDIATE_VARIABLE }}" >> $GITHUB_OUTPUT
-            echo "aws_accounts=[$(echo ${account_plan_list[@]} | tr ' ', ',' )]" >> "$GITHUB_OUTPUT"
-            env|grep GIT
+  
+  job_2:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+        
