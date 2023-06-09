@@ -14,10 +14,13 @@ jobs:
     steps:
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
-        with: 
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: work1.yml
           name: world
-          
+
       - name: Extract artifact
         run: ls -R
 
