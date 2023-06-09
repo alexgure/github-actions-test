@@ -28,12 +28,13 @@ jobs:
   job_2:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     steps:
       #- name: Download artifact
       #  uses: actions/download-artifact@v3
       #  with:
       #    name: my-artifact
       - run: gh workflow list
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
         
