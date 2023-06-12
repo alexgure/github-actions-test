@@ -16,31 +16,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: jitterbit/get-changed-files@v1
-        id: abc
-        with:
-          format: space-delimited
-          token: ${{ secrets.GITHUB_TOKEN }}
-        
-      - name: Printing
+      - name: (CI) Dependencies update check
         run: |
-          echo "All:"
-          echo "${{ steps.abc.outputs.all }}"
-          echo "Added:"
-          echo "${{ steps.abc.outputs.added }}"
-          echo "Removed:"
-          echo "${{ steps.abc.outputs.removed }}"
-          echo "Renamed:"
-          echo "${{ steps.abc.outputs.renamed }}"
-          echo "Modified:"
-          echo "${{ steps.abc.outputs.modified }}"
-          echo "Added+Modified:"
-          echo "${{ steps.abc.outputs.added_modified }}"
+          current_commit=`git log -n 1 --pretty=format:%H`
+          echo $current_commit 
+          
 
-      - name: Generate list of modified files
-        id: aws_account_plan_list
-        continue-on-error: true
-        run: |
+
+      #- name: Generate list of modified files
+      #  id: aws_account_plan_list
+      #  continue-on-error: true
+      #  run: |
           #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           #echo URL: $URL
           #FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
