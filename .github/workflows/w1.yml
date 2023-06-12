@@ -36,6 +36,7 @@ jobs:
           for x in ${customizations_list[@]}; do echo ${x}; done
           
           URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          echo URL: $URL
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
 
@@ -75,14 +76,15 @@ jobs:
         run: |
           ls -lart
           URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          echo URL: $URL
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           echo $FILES
 
-            #declare -a customizations_list
-            #declare -a accounts_list
-            #declare -a account_plan_list
-            #customizations_list=($(for x in ${{ steps.changed_files.outputs.all_changed_files }}; do echo ${x} | cut -d'/' -f1 ; done | sort -u))
+          #declare -a customizations_list
+          #declare -a accounts_list
+          #declare -a account_plan_list
+          #customizations_list=($(for x in ${{ steps.changed_files.outputs.all_changed_files }}; do echo ${x} | cut -d'/' -f1 ; done | sort -u))
             
-            #echo "Found changes in : "
-            #for x in ${customizations_list[@]}; do echo ${x}; done
+          #echo "Found changes in : "
+          #for x in ${customizations_list[@]}; do echo ${x}; done
         
