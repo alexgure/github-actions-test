@@ -37,8 +37,8 @@ jobs:
           
           FILES="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|grep -v '.github')"
           echo FILES: $FILES
-          list1=($(for x in $FILES; do echo ${x%/*}; done|uniq))
-          echo list1: $list1
+          customizations_list=($(for x in $FILES; do echo ${x%/*}; done|uniq))
+          echo "customizations_list: $customizations_list[@]"
 
           #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           #echo URL: $URL
