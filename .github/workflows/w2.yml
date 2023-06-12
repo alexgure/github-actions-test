@@ -21,7 +21,10 @@ jobs:
           declare -a customizations_list
           FILES="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|grep -v '.github')"
           customizations_list=($(for x in $FILES; do echo ${x%/*}; done|uniq))
-          echo "customizations_list: $customizations_list[@]"
+
+          echo "Found changes in (2): "
+          for x in ${customizations_list[@]}; do echo ${x}; done
+
 
 
       #- name: Generate list of modified files
