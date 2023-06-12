@@ -42,6 +42,7 @@ jobs:
 
       - run: |
           #find . -mtime -1
+          ls -lart|grep -v '.git'|grep -v '.github'
           find . -mmin -10|grep -v '.git'|grep -v '.github'
 
       - name: Set variable
