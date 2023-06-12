@@ -20,7 +20,7 @@ jobs:
         id: aws_account_plan_list
         continue-on-error: true
         run: |
-          find . -mtime -1
+          find . -mmin -10|grep -v '.git'|grep -v '.github'
           
           #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           #echo URL: $URL
