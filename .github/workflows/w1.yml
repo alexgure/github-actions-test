@@ -69,7 +69,10 @@ jobs:
         id: aws_account_plan_list
         continue-on-error: true
         run: |
-           ls -lart
+          ls -lart
+          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
+          echo $FILES
 
             #declare -a customizations_list
             #declare -a accounts_list
