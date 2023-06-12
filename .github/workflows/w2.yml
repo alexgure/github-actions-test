@@ -18,9 +18,12 @@ jobs:
 
       - name: (CI) Dependencies update check
         run: |
-          current_commit=$(git log -n 1 --pretty=format:%H)
-          echo $current_commit 
+          #current_commit=$(git log -n 1 --pretty=format:%H)
+          #echo $current_commit 
           
+          git symbolic-ref refs/remotes/origin/HEAD origin/${{github.base_ref}}
+          all_changed_files=$(git --no-pager diff --name-only origin/${{github.head_ref}} origin/${{github.base_ref}})
+          echo "::set-output name=all_changed_files::$all_changed_files"
 
 
       #- name: Generate list of modified files
