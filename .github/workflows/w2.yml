@@ -16,21 +16,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: (CI) Dependencies update check
+      - name: Generate list of modified files
         run: |
           #current_commit=$(git log -n 1 --pretty=format:%H)
           #echo $current_commit 
           
-          git symbolic-ref refs/remotes/origin/HEAD origin/${{github.base_ref}}
-          all_changed_files=$(git --no-pager diff --name-only origin/${{github.head_ref}} origin/${{github.base_ref}})
-          #echo "::set-output name=all_changed_files::$all_changed_files"
-          echo "[all_changed_files=$all_changed_files]" >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
-
-
-          echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
-
+          echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|grep -v '.github')"
+          
       #- name: Generate list of modified files
       #  id: aws_account_plan_list
       #  continue-on-error: true
