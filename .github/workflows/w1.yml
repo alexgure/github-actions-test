@@ -43,6 +43,7 @@ jobs:
       - run: |
           #find . -mtime -1
           git status
+          git diff
           find . -mmin -10|grep -v '.git'|grep -v '.github'
 
       - name: Set variable
