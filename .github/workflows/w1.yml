@@ -40,12 +40,6 @@ jobs:
           #FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
           #echo $FILES
 
-      - run: |
-          #find . -mtime -1
-          git status
-          git diff
-          find . -mmin -10|grep -v '.git'|grep -v '.github'
-
       - name: Set variable
         run: | 
           echo "pull_request : ${{ github.event.pull_request }}"
