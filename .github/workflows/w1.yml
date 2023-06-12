@@ -35,6 +35,10 @@ jobs:
           echo "Found changes in : "
           for x in ${customizations_list[@]}; do echo ${x}; done
           
+          echo '---------'
+          FILES="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}|grep -v '.github'|xargs|dirname)"
+          echo $FILES
+
           #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           #echo URL: $URL
           #FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
