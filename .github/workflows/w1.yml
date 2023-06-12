@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, closed]
+    types: [opened]
 
 jobs:
   job_1:
@@ -41,54 +41,15 @@ jobs:
           #echo $FILES
 
       - run: |
-          find . -mtime -1
+          #find . -mtime -1
+          find . -mmin -10
 
-                  
-      
       - name: Set variable
         run: | 
           echo "pull_request : ${{ github.event.pull_request }}"
           echo "{myVariable}={111}" >> $GITHUB_OUTPUT
           echo "{myVariable}={111}" > 1.txt
           
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: 1.txt
-              
+         
   
-  job_2:
-    if: ${{ github.event.pull_request.merged }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout local repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      #- name: Get lisf ot changed files
-      #  id: changed_files
-      #  uses: tj-actions/changed-files@v34
-      #  with:
-      #    files_ignore: .github
-
-      - name: Generate list of modified files
-        id: aws_account_plan_list
-        continue-on-error: true
-        run: |
-          find . -mtime -1
-          
-          #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
-          #echo URL: $URL
-          #FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
-          #echo $FILES
-
-          #declare -a customizations_list
-          #declare -a accounts_list
-          #declare -a account_plan_list
-          #customizations_list=($(for x in ${{ steps.changed_files.outputs.all_changed_files }}; do echo ${x} | cut -d'/' -f1 ; done | sort -u))
-            
-          #echo "Found changes in : "
-          #for x in ${customizations_list[@]}; do echo ${x}; done
-        
+  

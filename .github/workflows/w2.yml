@@ -1,0 +1,28 @@
+name: First Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  job_2:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout local repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Generate list of modified files
+        id: aws_account_plan_list
+        continue-on-error: true
+        run: |
+          find . -mtime -1
+          
+          #URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          #echo URL: $URL
+          #FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .filename')
+          #echo $FILES
